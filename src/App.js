@@ -1,21 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import axios from 'axios';
 
-class App extends Component {
+import AnotherComponent from './AnotherComponent';
+import Todo from './Todo';
+import ParentComponent from './ParentComponent';
+
+export default class App extends ParentComponent {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      val: "Click me to change me"
+    }
+
+    console.log("constructor executed");
+  }
+
+  componentDidMount = () => {
+    throw "error";
+  }
+  
+  componentWillUnmount = () => {
+    console.log("component unmounted...");
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log("getDerivedStateFromProps() executed", nextProps, prevState);
+
+    return null;
+  }
+
+  getSnapshotBeforeUpdate = (prevProps, prevState) => {
+    console.log("getSnapshotBeforeUpdate() executed", prevProps, prevState);
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log("componentDidUpdate() executed", prevProps, prevState);
+  }
+  
   render() {
+    console.log("component rendered..");
+    
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <h2>
+          This component will not be rendered because the error was thrown during mount...
+        </h2>
       </div>
-    );
+    )
   }
 }
 
-export default App;
